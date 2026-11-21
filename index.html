@@ -434,10 +434,10 @@
 
     // Unlockable Strikers
     const STRIKERS = [
-      { id: 'sona', name: 'Sona Gold', mass: 2.1, r: 20, spinBoost: 1.0, cost: 0, palette: { core: '#ffb300', inner: '#fff9c4', rim: '#e65100' }, desc: 'Balanced classic street shooter' },
-      { id: 'neelam', name: 'Neelam Sapphire', mass: 2.35, r: 20.5, spinBoost: 1.35, cost: 15, palette: { core: '#1e88e5', inner: '#bbdefb', rim: '#0d47a1' }, desc: '+35% Backspin & Curve grip' },
-      { id: 'agate', name: 'Suraj Agate', mass: 2.65, r: 21.5, spinBoost: 1.15, cost: 35, palette: { core: '#e53935', inner: '#ffcdd2', rim: '#b71c1c' }, desc: 'Heavy stone crusher for tight clusters' },
-      { id: 'steel', name: 'Faulad Steel', mass: 3.1, r: 22, spinBoost: 1.45, cost: 60, palette: { core: '#78909c', inner: '#eceff1', rim: '#263238' }, desc: 'Maximum momentum transfer & spin' }
+      { id: 'sona', name: 'Sona Gold', mass: 2.1, r: 20, spinBoost: 1.0, cost: 0, palette: { core: '#f59e0b', inner: '#fffbeb', edge: '#b45309', rim: '#78350f' }, desc: 'Balanced classic street shooter' },
+      { id: 'neelam', name: 'Neelam Sapphire', mass: 2.35, r: 20.5, spinBoost: 1.35, cost: 15, palette: { core: '#0284c7', inner: '#e0f2fe', edge: '#0369a1', rim: '#0c4a6e' }, desc: '+35% Backspin & Curve grip' },
+      { id: 'agate', name: 'Suraj Agate', mass: 2.65, r: 21.5, spinBoost: 1.15, cost: 35, palette: { core: '#e11d48', inner: '#ffe4e6', edge: '#be123c', rim: '#881337' }, desc: 'Heavy stone crusher for tight clusters' },
+      { id: 'steel', name: 'Faulad Steel', mass: 3.1, r: 22, spinBoost: 1.45, cost: 60, palette: { core: '#64748b', inner: '#f8fafc', edge: '#334155', rim: '#0f172a' }, desc: 'Maximum momentum transfer & spin' }
     ];
 
     // 5 Solo Career Stages
@@ -575,11 +575,12 @@
     }));
 
     const GOLI_PALETTES = [
-      { core: '#00acc1', inner: '#84ffff' },
-      { core: '#43a047', inner: '#b9f6ca' },
-      { core: '#1e88e5', inner: '#82b1ff' },
-      { core: '#8e24aa', inner: '#ea80fc' },
-      { core: '#fb8c00', inner: '#ffe57f' }
+      { core: '#10b981', inner: '#d1fae5', edge: '#047857', rim: '#064e3b' }, // Emerald Green
+      { core: '#f43f5e', inner: '#ffe4e6', edge: '#be123c', rim: '#881337' }, // Ruby Red
+      { core: '#0284c7', inner: '#e0f2fe', edge: '#0369a1', rim: '#0c4a6e' }, // Cobalt Sapphire
+      { core: '#f59e0b', inner: '#fef3c7', edge: '#d97706', rim: '#78350f' }, // Sun Amber Topaz
+      { core: '#a855f7', inner: '#f3e8ff', edge: '#7e22ce', rim: '#581c87' }, // Royal Amethyst
+      { core: '#06b6d4', inner: '#cffafe', edge: '#0891b2', rim: '#164e63' }  // Electric Cyan
     ];
 
     // Procedural Web Audio Synth
@@ -774,7 +775,7 @@
         value: c.isRaja ? 3 : 1,
         angle: Math.random() * Math.PI * 2,
         palette: c.isRaja
-          ? { core: '#d50000', inner: '#ffd54f' }
+          ? { core: '#dc2626', inner: '#fef08a', edge: '#991b1b', rim: '#450a0a' }
           : GOLI_PALETTES[idx % GOLI_PALETTES.length]
       }));
     }
@@ -1303,27 +1304,30 @@
 
       ctx.clearRect(0, 0, W, H);
 
-      // Warm Indian Street Soil Gradient
-      const grad = ctx.createRadialGradient(RING.x, RING.y, 35, W / 2, H / 2, H * 0.75);
-      grad.addColorStop(0, '#deb986');
-      grad.addColorStop(0.6, '#c49660');
-      grad.addColorStop(1, '#966b39');
+      // Sunlit Indian Street Sand & Courtyard
+      const grad = ctx.createRadialGradient(RING.x, RING.y, 40, W / 2, H / 2, H * 0.85);
+      grad.addColorStop(0, '#fffbf2');
+      grad.addColorStop(0.35, '#faebd7');
+      grad.addColorStop(0.7, '#f0d9b5');
+      grad.addColorStop(1, '#e2c59b');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, W, H);
 
       soilSpecks.forEach(s => {
-        ctx.fillStyle = s.dark ? `rgba(58,36,28,${s.alpha})` : `rgba(255,248,225,${s.alpha})`;
+        ctx.fillStyle = s.dark ? `rgba(168, 124, 75, ${s.alpha * 0.6})` : `rgba(255, 255, 255, ${s.alpha * 0.85})`;
         ctx.beginPath();
         ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
         ctx.fill();
       });
 
-      // Chalk Ring
+      // Luminous Chalk Ring
       ctx.save();
       ctx.beginPath();
       ctx.arc(RING.x, RING.y, RING.radius, 0, Math.PI * 2);
-      ctx.strokeStyle = 'rgba(255, 253, 245, 0.88)';
-      ctx.lineWidth = 4.5;
+      ctx.strokeStyle = '#ffffff';
+      ctx.lineWidth = 5;
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.85)';
+      ctx.shadowBlur = 8;
       ctx.setLineDash([14, 6]);
       ctx.stroke();
       ctx.setLineDash([]);
@@ -1334,8 +1338,10 @@
       ctx.beginPath();
       ctx.moveTo(85, BASELINE_Y);
       ctx.lineTo(W - 85, BASELINE_Y);
-      ctx.strokeStyle = 'rgba(255, 253, 245, 0.72)';
-      ctx.lineWidth = 3;
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.lineWidth = 3.5;
+      ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+      ctx.shadowBlur = 6;
       ctx.setLineDash([8, 6]);
       ctx.stroke();
       ctx.setLineDash([]);
@@ -1472,46 +1478,81 @@
       [...marbles, striker].forEach(m => {
         if (!m) return;
         ctx.save();
-        // Drop shadow
+
+        // Translucent Contact Shadow on Sand
         ctx.beginPath();
-        ctx.arc(m.x + 3.5, m.y + 4.5, m.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(30, 15, 5, 0.42)';
+        ctx.ellipse(m.x + 2.5, m.y + m.r * 0.65, m.r * 0.95, m.r * 0.42, 0, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(110, 75, 40, 0.32)';
         ctx.fill();
 
-        // Sphere Gradient
+        // 3D Glass Sphere Gradient (No black shadow! Deep jewel rim)
+        const p = m.palette;
         const g = ctx.createRadialGradient(
-          m.x - m.r * 0.32, m.y - m.r * 0.32, m.r * 0.1,
+          m.x - m.r * 0.35, m.y - m.r * 0.35, m.r * 0.05,
           m.x, m.y, m.r
         );
-        g.addColorStop(0, m.palette.inner);
-        g.addColorStop(0.6, m.palette.core);
-        g.addColorStop(1, '#121212');
+        g.addColorStop(0, p.inner);
+        g.addColorStop(0.45, p.core);
+        g.addColorStop(0.82, p.edge || p.core);
+        g.addColorStop(1, p.rim || '#102027');
         ctx.beginPath();
         ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
         ctx.fillStyle = g;
         ctx.fill();
 
-        // Inner Cat's-Eye Swirl
+        // Glass Caustic Backlight (Glow arc at bottom right opposite light source)
+        const caustic = ctx.createRadialGradient(
+          m.x + m.r * 0.28, m.y + m.r * 0.28, m.r * 0.05,
+          m.x + m.r * 0.28, m.y + m.r * 0.28, m.r * 0.65
+        );
+        caustic.addColorStop(0, p.inner);
+        caustic.addColorStop(0.6, p.core);
+        caustic.addColorStop(1, 'transparent');
+        ctx.save();
+        ctx.globalAlpha = 0.65;
+        ctx.beginPath();
+        ctx.arc(m.x, m.y, m.r * 0.92, 0, Math.PI * 2);
+        ctx.fillStyle = caustic;
+        ctx.fill();
+        ctx.restore();
+
+        // Inner 3D Cat's-Eye Glass Ribbon / Swirl
+        ctx.save();
         ctx.translate(m.x, m.y);
         ctx.rotate(m.angle);
+        const swirlGrad = ctx.createLinearGradient(-m.r * 0.6, 0, m.r * 0.6, 0);
+        swirlGrad.addColorStop(0, 'rgba(255,255,255,0)');
+        swirlGrad.addColorStop(0.3, p.inner);
+        swirlGrad.addColorStop(0.5, '#ffffff');
+        swirlGrad.addColorStop(0.7, p.inner);
+        swirlGrad.addColorStop(1, 'rgba(255,255,255,0)');
         ctx.beginPath();
-        ctx.ellipse(0, 0, m.r * 0.58, m.r * 0.24, 0.35, 0, Math.PI * 2);
-        ctx.fillStyle = m.palette.inner;
-        ctx.globalAlpha = 0.58;
+        ctx.ellipse(0, 0, m.r * 0.6, m.r * 0.22, 0.35, 0, Math.PI * 2);
+        ctx.fillStyle = swirlGrad;
+        ctx.globalAlpha = 0.75;
         ctx.fill();
-        ctx.globalAlpha = 1;
-        ctx.rotate(-m.angle);
-        ctx.translate(-m.x, -m.y);
+        ctx.restore();
 
-        // Specular Shine
+        // Primary Specular Glint (Top-left sun reflection)
         ctx.beginPath();
-        ctx.ellipse(m.x - m.r * 0.3, m.y - m.r * 0.3, m.r * 0.28, m.r * 0.15, -Math.PI / 4, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.ellipse(m.x - m.r * 0.32, m.y - m.r * 0.32, m.r * 0.28, m.r * 0.14, -Math.PI / 4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+        ctx.fill();
+
+        // Secondary Micro Glint
+        ctx.beginPath();
+        ctx.arc(m.x - m.r * 0.12, m.y - m.r * 0.44, m.r * 0.08, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.75)';
         ctx.fill();
 
         if (m.isRaja) {
+          ctx.beginPath();
+          ctx.arc(m.x, m.y, m.r + 2, 0, Math.PI * 2);
+          ctx.strokeStyle = 'rgba(255, 215, 0, 0.85)';
+          ctx.lineWidth = 2;
+          ctx.stroke();
           ctx.fillStyle = '#fff9c4';
-          ctx.font = 'bold 12px sans-serif';
+          ctx.font = 'bold 13px sans-serif';
           ctx.textAlign = 'center';
           ctx.textBaseline = 'middle';
           ctx.fillText('👑', m.x, m.y + 1);
