@@ -1,7 +1,7 @@
 # 🎯 KANCHA: Street Marbles Ustad (कंचा: स्ट्रीट उस्ताद)
 
-> **The nostalgic Indian street marble game reimagined with real 2D collision physics, authentic backspin mechanics, and procedural Web Audio.**  
-> Built as a single self-contained HTML5 file with zero dependencies and 60 FPS mobile-first gameplay.
+> **An authentic Indian street marble physics game built with Google Gemini in 2 prompts.**  
+> Built as a single self-contained HTML5 file with zero dependencies, 60 FPS mobile gameplay, and procedural Web Audio.
 
 [![Play Online](https://img.shields.io/badge/PLAY_NOW-Live_Demo-ff8f00?style=for-the-badge&logo=googlechrome&logoColor=black)](https://jalagamkalyan.github.io/kancha-street-ustad/)
 [![YouTube](https://img.shields.io/badge/YouTube-Kalyan's_Lab-ff0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@KalyansLab)
@@ -16,7 +16,25 @@
 
 ---
 
-## 🕹️ Authentic Street Marble Rules & Mechanics
+## 🧠 The Exact 2 Gemini Prompts Used
+
+This entire game was architected and built using two simple prompts in Google Gemini:
+
+### **Prompt 1: Research & Game Mechanics**
+```text
+Research the traditional Indian street game of Kancha (marbles/goti). 
+Define the core gameplay rules: slingshot power aiming, pairwise elastic marble collision, the chalk circle boundary, ring trap foul penalties, and backspin english.
+```
+
+### **Prompt 2: Single-File Web Engine Architecture**
+```text
+Build Kancha: Street Marbles Ustad as a single self-contained index.html file using HTML5 Canvas and vanilla JavaScript. 
+Include smooth touch/mouse slingshot controls, a spin pad for backspin brakes, AI opponent mode, and procedural Web Audio synthesis for marble clacks without any external asset files.
+```
+
+---
+
+## 🕹️ Game Features Built by Gemini
 
 1. **Slingshot Aim & Power:**  
    - Pull back on the golden Striker on the baseline crease to adjust shot angle and slingshot velocity.
@@ -36,30 +54,19 @@
    - **Suraj Agate:** Heavy stone cluster crusher ($m = 2.65$).
    - **Faulad Steel:** Maximum momentum transfer & spin power ($m = 3.1$).
 
-5. **Game Modes:**  
-   - **Career Mode:** 5 progressive street stages with obstacles, narrow rings, and shot limits.
-   - **Vs Street AI:** Rookie, Pro, and Ustad difficulty levels with intelligent trajectory aiming.
-   - **2-Player Pass & Play:** Local turn-based multiplayer.
+5. **Procedural Web Audio Engine:**  
+   - Zero external sound files. Synthesizes glass marble clicks, sand friction skids, and whooshes on-the-fly using the browser's native `AudioContext`.
 
 ---
 
-## 🔬 Physics & Audio Architecture (Single HTML File)
+## 💰 Monetization Guide: Publishing Web Games
 
-- **2D Elastic Momentum Exchange:** Real pairwise impulse calculations using mass ratios, coefficient of restitution (0.94), and surface friction ($0.983$).
-- **Magnus Effect & Spin Physics:** Spin vectors impart in-flight trajectory curve and reactive post-impact backspin impulses.
-- **Procedural Web Audio Engine:** Zero external sound assets. Synthesizes glass marble clicks, sand friction skids, whooshes, and impact thuds on-the-fly using the browser's native `AudioContext`.
-- **Zero Build Tools:** Single `index.html` file using Tailwind CSS and native Canvas API.
-
----
-
-## 💰 Publishing & Monetization
-
-Because the entire game is self-contained in a single file, it can be deployed directly to global web gaming portals:
+Because the entire game is self-contained in a single `index.html` file, creators can publish it directly to casual web gaming portals:
 
 | Platform | Monthly Audience | Monetization |
 | :--- | :--- | :--- |
 | **CrazyGames** | 30M+ Players | Developer ad revenue share |
-| **Poki** | 50M+ Players | Revenue share & direct distribution |
+| **Poki** | 50M+ Players | Developer revenue share |
 | **GamePix** | Global HTML5 network | Syndication ad payouts |
 | **itch.io** | Indie Game Community | Direct purchases and community tips |
 
@@ -78,7 +85,7 @@ Because the entire game is self-contained in a single file, it can be deployed d
 
 ## 🔔 Weekly AI Game Drops at Kalyan's Lab
 
-Every week in **Kalyan's Lab**, I research, build, and publish a brand new playable game with full open-source code.
+Every week in **Kalyan's Lab**, I use AI to research, build, and publish a brand new playable game with full open-source code.
 
 👉 **[Subscribe to Kalyan's Lab on YouTube](https://www.youtube.com/@KalyansLab)** to get every free game release!
 
